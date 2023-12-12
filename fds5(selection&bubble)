@@ -1,0 +1,74 @@
+def accept_array(A):
+    n=int(input("Enter the total no. of students :"))
+    for i in range(n):
+        x= float(int(input("Enter the first year percentage of students %d: "%(i+1))))
+        A.append(x)
+    print("Array accepted successfully\n\n")
+
+def display_array(A):
+    n = len(A) 
+    if (n==0):
+        print("\nNo records in the database")
+    else:
+        print("array of FE Marks : ",end=' ')
+        for i in range (n): 
+            print("%.2f"%A[i],end=' ')      
+        print("\n")
+
+def seleltion_sort(A):
+    n=len(A)
+    for pos in range(1,n):
+        for i in range(n-pos):
+            if(A[i]>A[i+1]):
+                temp=A[i]
+                A[i]=A[i+1]
+                A[i+1]=temp
+
+def bubble_sort(A):
+    n=len(A)
+    for Pos in range(1,n):
+      for i in range(n-Pos):
+        if(A[i]<A[i+1]):
+            temp=A[i]
+            A[i]=A[i+1]
+            A[i+1]=temp
+
+def main():
+    A = []
+    while True:
+      print("\t1: Accept &display the FE Marks")
+      print("\t2: Selection sort ascending order")
+      print("\t3: Bubble sort descending order and display top five marks")
+      print("\t4: Exit")
+      ch = int(input("Enter your choice : "))
+      if(ch==4):
+        print("End of program")
+        break
+      elif (ch==1):
+        accept_array(A)
+        display_array(A)
+      elif (ch==2):
+          print("Marks before sorting")
+          display_array(A)
+          seleltion_sort(A)
+          print("Marks after sorting")
+          display_array(A)
+      elif (ch==3):
+          print("Markes before sorting")
+          display_array(A)
+          bubble_sort(A)
+          print("Marks after sorting")
+          display_array(A)
+          if(len(A)>=5):
+              print("Top five score :")
+              for i in range(5):
+                  print("%.2f"%A[i])
+          else:
+              print("top scores :")
+              for i in range(len(A)):
+                  print("%.2f"%A[i])
+      else:
+          print("Wrong choice entered ")
+                      
+          
+main()
