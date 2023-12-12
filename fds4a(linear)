@@ -44,4 +44,5 @@ while True:
   elif c==3: 
     Search_s(A)
   elif c==4:
-    break
+    print("wrong choice entered ")
+  break
