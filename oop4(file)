@@ -1,0 +1,40 @@
+#include<iostream>
+#include<fstream>
+using namespace std;
+int main()
+{
+    fstream myfile;
+    myfile.open("myfile.txt",ios::out);
+    if(!myfile)
+        cout<<"File not created"<<endl;
+    else
+    {
+        cout<<"File created succesfuly"<<endl;
+        myfile<<"Pranav07";
+        myfile.close();
+    }
+    
+    myfile.open("myfile.text",ios::in);
+    if(!myfile)
+        cout<<"No such file"<<endl;
+    else
+    {
+        char ch;
+        while(1)
+        {
+            myfile>>ch;
+            if(myfile.eof())
+                break;
+            cout<<ch;
+        }
+    }
+    
+myfile.close();
+return 0;
+}
+    
+    
+    
+    
+    
+    
