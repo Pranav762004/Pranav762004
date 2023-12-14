@@ -1,0 +1,65 @@
+#include <iostream>
+using namespace std;
+class complex{
+public:
+
+        int real;
+        int imaginary;
+    
+        complex()
+        {
+            real=0;
+            imaginary=0;
+            cout<<"Default value is:"<<real<<"+"<<imaginary<<"i"<<endl;
+        }
+
+        complex operator+(complex b)
+        {
+        complex c;
+        c.real=real+b.real;
+        c.imaginary=imaginary+b.imaginary;
+        cout<<"Addition is: "<<c.real<<"+"<<c.imaginary<<"i"<<endl;
+        return c;
+        }
+
+complex operator*(complex b)
+{
+complex d;
+d.real=(real*b.real)-(imaginary*b.imaginary);
+    d.imaginary=(real*b.imaginary)+(imaginary*b.real);
+    cout<<"Multiplication is:"<<d.real<<"+"<<d.imaginary<<"i"<<endl;
+return d;
+}
+
+friend ostream &operator<<(ostream &output,complex &m);
+friend istream &operator>>(istream &input,complex &m);
+};
+
+ostream &operator<<(ostream &output, complex &m)
+{
+    output<<"\nComplex number is: "<<m.real<<"+"<<m.imaginary<<"i"<<endl; 
+    return output;
+}
+
+istream &operator>>(istream &input,complex &m)
+{ 
+    input>>m.real>>m.imaginary;
+    return input;
+}
+
+int main()
+{
+    complex a;
+    cout<<"Enter first complex no. :";
+    cin>>a;
+    complex b;
+    cout<<"Enter second complex no. :";
+    cin>>b;
+    cout<<"The two complex numbers are: "<<endl;
+    cout<<a;
+    cout<<b;
+    complex c=a+b;
+    complex d=a*b;
+
+    return 0;
+}
