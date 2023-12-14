@@ -1,0 +1,86 @@
+#include <iostream>
+using namespace std;
+class Publication
+{
+public:string book_name;
+ int price;
+ void input();
+ void display();
+};
+void Publication::input()
+{
+ cout<<"Enter the name of the book :"<<endl;
+ cin>>book_name;
+ cout<<"Enter the price :"<<endl;
+ cin>>price;
+}
+void Publication::display()
+{
+ cout<<"Name of the book is: "<<book_name<<endl;
+ cout<<"Price of the book is: "<<price<<endl;
+}
+class book:public Publication
+{
+public:int pagecount;
+ void insert();
+ void show();
+};
+void book::insert()
+{
+ input();
+ cout<<"Enter the number of pages: "<<endl;
+ 
+try{
+ cin>>pagecount;
+ if(pagecount<=0)
+ throw pagecount;
+}
+catch(int)
+{
+ cout<<"Pagecount cant be less than or equal to zero";
+}
+}
+void book::show()
+{
+ display();
+ cout<<"Number of pages of the book is: "<<pagecount<<endl;
+} 
+class tape: public Publication
+{
+public: int time; 
+ void save(); 
+ void output();
+};
+void tape:: save()
+{
+ cout<<"Time is: "<<endl;
+ cin>>time;
+}
+void tape::output()
+{
+ cout<<"Time is : "<<time<<endl;
+}
+int main()
+{
+ book t;
+ tape d;
+ int ch;
+do{
+ cout<<"1.book 2. tape 3.exit"<<endl;
+ cin>>ch;
+ switch(ch)
+ {
+ case 1:
+ t.insert();
+ t.show();
+ break;
+ case 2:
+ d.save();
+ d.output();
+ break;
+ 
+ } 
+}
+while(ch!=3); 
+return 0;
+}
