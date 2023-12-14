@@ -1,0 +1,118 @@
+#include <iostream>
+using namespace std;
+
+class studData;
+
+class student {
+    string name;
+    int Roll_no;
+    string cls;
+    string division;
+    string Birthday_date;
+    string bloodgroup;
+    static int count;
+
+public:
+    student() : name(""), Roll_no(0), cls(""), division(""), Birthday_date("dd/mm/yyyy"), bloodgroup("") {}
+
+    static int getCount() {
+        return count;
+    }
+
+    void getData(studData*);
+    void dispData(studData*);
+};
+
+class studData {
+    string caddress;
+    long int teleno;
+    long int dlno;
+    friend class student;
+
+public:
+    studData() : caddress(""), teleno(0), dlno(0) {}
+
+    void getstudData() {
+        cout << "Enter Contact address : ";
+        cin.ignore();
+        getline(cin, caddress);
+        cout << "Enter telephone number :";
+        cin >> teleno;
+        cout << "Enter driving license number : ";
+        cin >> dlno;
+    }
+
+    void dispstudData() {
+        cout << "Contact address : " << caddress << endl;
+        cout << "Telephone number : " << teleno << endl;
+        cout << "Driving license number : " << dlno << endl;
+    }
+};
+
+int student::count = 0;
+
+void student::getData(studData* st) {
+    cout << "Enter student name : ";
+    cin.ignore();
+    getline(cin, name);
+    cout << "Enter Roll number : ";
+    cin >> Roll_no;
+    cout << "Enter class : ";
+    cin.ignore();
+    getline(cin, cls);
+    cout << "Enter Division : ";
+    cin >> division;
+    cout << "Birthday date : ";
+    cin >> Birthday_date;
+    cout << "Enter blood group : ";
+    cin >> bloodgroup;
+    st->getstudData();
+    count++;
+}
+
+void student::dispData(studData* st1) {
+    cout << "Student name is : " << name << endl;
+    cout << "Roll number is : " << Roll_no << endl;
+    cout << "Class is : " << cls << endl;
+    cout << "Division is : " << division << endl;
+    cout << "Birthday date is : " << Birthday_date << endl;
+    cout << "Blood group is : " << bloodgroup << endl;
+    st1->dispstudData();
+}
+
+int main() {
+    student* stud1[100];
+    studData* stud2[100];
+    int n = 0;
+    char ch;
+
+    do {
+        stud1[n] = new student;
+        stud2[n] = new studData;
+        cout << "Default details of student" << endl;
+        stud1[n]->dispData(stud2[n]);
+        cout << "Enter details of student " << n + 1 << endl;
+        stud1[n]->getData(stud2[n]);
+        n++;
+        cout << "Do you want to add another student(y/n) : ";
+        cin >> ch;
+        cin.ignore();
+    } while (ch == 'y' || ch == 'Y');
+
+    for (int i = 0; i < n; i++) {
+        cout << "------------------------" << endl;
+        stud1[i]->dispData(stud2[i]);
+        cout << "------------------------" << endl;
+    }
+
+    cout << "----------------------------" << endl;
+    cout << "Total student : " << student::getCount() << endl;
+    cout << "----------------------------" << endl;
+
+    for (int i = 0; i < n; i++) {
+        delete stud1[i];
+        delete stud2[i];
+    }
+
+    return 0;
+}
